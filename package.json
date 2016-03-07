@@ -1,0 +1,34 @@
+{
+  "name": "log-viewer",
+  "version": "0.0.0",
+  "description": "views logs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified.\" && exit 1",
+    "start": "hotloadify index.js --open"
+  },
+  "keywords": [
+    "log",
+    "viewer"
+  ],
+  "author": "Garrett",
+  "license": "MIT",
+  "dependencies": {
+    "color": "^0.11.1",
+    "moment": "^2.11.2",
+    "random-item": "^1.0.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "reactify": "^1.1.1",
+    "redux": "^3.3.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "hotloadify": "0.0.4"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
