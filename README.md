@@ -1,6 +1,6 @@
 # DDF Log Viewer
 
-Quick DDF log viewer prototype.
+Quick DDF log viewer prototype using React/Redux.
 
 ## Usage
 
