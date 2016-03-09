@@ -1,46 +1,39 @@
-var data = []
-
 var dom = require('react-dom')
 var React = require('react')
 var redux = require('redux')
-var random = require('random-item')
 
 var reducer = require('./reducer')
 var actions = require('./actions')
-var log = require('./log-viewer')
-var selector = require('./level-selector')
+var LogPanel = require('./log-panel')
 
-var store = redux.createStore(reducer)
+var random = require('./random-entry')
 
 var render = function (data) {
-	var state = store.getState()
-	console.log(state)
+	var state = window.store.getState()
 
 	dom.render(
-		<div>
-			{selector(state, store.dispatch)}
-			{log.viewer(state, store.dispatch)}
-		</div>,
-		document.getElementById('root'))
+    <LogPanel state={state} dispatch={window.store.dispatch} />,
+    document.getElementById('root'))
 }
 
-store.subscribe(render)
-
-render()
+var log = function () {
+  console.log(window.store.getState())
+}
 
 if (!window.isInit) {
-	setInterval(function () {
-		var level = random(log.levels().slice(1))
+  var store = window.store = redux.createStore(reducer)
+  store.subscribe(render)
 
-		store.dispatch(actions.append({
-			"time": (new Date()).toISOString(),
-			"level": level,
-			"bundle": "Words Bundle",
-			"app": "Word Printer App",
-			"message": "Too Many Words To Display"
-		}))
+  /*for (var i = 0; i < 50; i++) {
+		store.dispatch(actions.append(random()))
+  }*/
 
-	}, 1000)
-	
+  setInterval(function () {
+		window.store.dispatch(actions.append(random()))
+  }, 1000)
+
+  store.subscribe(log)
 	window.isInit = true
 }
+
+render()

@@ -1,8 +1,14 @@
-exports.filter = function (level) {
+exports.filter = function (filter) {
 	return {
 		type: 'FILTER_LOGS',
-		level: level
+		filter: filter
 	}
+}
+
+exports.toggle = function () {
+  return {
+    type: 'TOGGLE_LOGS'
+  }
 }
 
 exports.append = function (entry) {
