@@ -1,24 +1,23 @@
-var log = require('./log-viewer')
 var React = require('react')
-var actions = require('./actions')
+var levels = require('./levels')
 
-var logOption = function (selected) {
-	return function (level) {
-		if (level === selected) {
-			return <option value={level} selected>{level}</option>
-		} else {
-			return <option value={level}>{level}</option>
-		}
-	}
+var options = function () {
+	return levels().map(function (level) {
+    return <option key={level} value={level}>{level}</option>
+  })
 }
 
-var logSelector = function (state, dispatch) {
+var select = function (fn) {
+  return function (e) { fn(e.target.value) }
+}
+
+var LevelSelector = function (props) {
 	return (
-		<select onChange={function (e) { dispatch(actions.filter(e.target.value)) }}>
-			{log.levels().map( logOption(state.filter) )}
+		<select value={props.selected}
+            onChange={select(props.onSelect)}>
+      {options()}
 		</select>
 	)
-
 }
 
-module.exports = logSelector
+module.exports = LevelSelector
