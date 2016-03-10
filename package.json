@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "standard",
-    "test": "browserify -d test/*.js | tape-run",
+    "test": "browserify -d test/*.js | tape-run | tap-nyan",
     "start": "hotloadify index.js --open"
   },
   "keywords": [
@@ -30,6 +30,7 @@
     "react-addons-test-utils": "^0.14.7",
     "react-stateless-wrapper": "^1.0.2",
     "standard": "^6.0.8",
+    "tap-nyan": "0.0.2",
     "tape": "^4.5.1",
     "tape-run": "^2.1.3"
   },
