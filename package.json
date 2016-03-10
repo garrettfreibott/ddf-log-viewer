@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "standard",
-    "test": "browserify test/*.js | tape-run",
+    "test": "browserify -d test/*.js | tape-run",
     "start": "hotloadify index.js --open"
   },
   "keywords": [
@@ -27,6 +27,8 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "hotloadify": "0.0.4",
+    "react-addons-test-utils": "^0.14.7",
+    "react-stateless-wrapper": "^1.0.2",
     "standard": "^6.0.8",
     "tape": "^4.5.1",
     "tape-run": "^2.1.3"
