@@ -5,6 +5,8 @@ var TextFilter = require('./text-filter')
 var LogEntry = require('./log-entry')
 var actions = require('./actions')
 
+var filter = require('./filter')
+
 var styles = function () {
   var border = '#ccc'
   var fg = '#777'
@@ -57,23 +59,13 @@ var select = function (dispatch) {
 }
 
 var entries = function (props) {
-  var level = props.filter.level
-  var fields = Object.keys(props.filter).filter(function (field) {
-    return field !== 'level' && props.filter[field] !== ''
-  })
-
-  return props.logs.filter(function (entry) {
-    return level === 'ALL' || entry.level === level
-  }).filter(function (entry) {
-    return fields.reduce(function (match, field) {
-      return entry[field].toLowerCase().match(new RegExp(props.filter[field], 'i')) && match
-    }, true)
-  }).map(function (entry) {
-    return <LogEntry entry={entry} />
-  })
+  return filter(props.filter, props.logs)
+    .map(function (entry) {
+      return <LogEntry entry={entry} />
+    })
 }
 
-var filter = function (field, props) {
+var textFilter = function (field, props) {
   var on = function (o) {
     props.dispatch(actions.filter(o))
   }
@@ -114,13 +106,13 @@ var LogViewer = function (props) {
                 <LevelSelector selected={props.filter.level} onSelect={select(props.dispatch)} />
               </td>
               <td style={s.controls}>
-                {filter('message', props)}
+                {textFilter('message', props)}
               </td>
               <td style={s.controls}>
-                {filter('app', props)}
+                {textFilter('app', props)}
               </td>
               <td style={s.controls}>
-                {filter('bundle', props)}
+                {textFilter('bundle', props)}
               </td>
             </tr>
           </thead>
