@@ -21,11 +21,11 @@ var change = function (props) {
 }
 
 module.exports = function (props) {
-
   return (
-    <input style={styles()}
-           value={props.value}
-           onChange={change(props)}
-           placeholder={props.field.toUpperCase()} />
+    <input
+      style={styles()}
+      value={props.value}
+      onChange={change(props)}
+      placeholder={props.field.toUpperCase()} />
   )
 }

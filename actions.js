@@ -1,8 +1,8 @@
 exports.filter = function (filter) {
-	return {
-		type: 'FILTER_LOGS',
-		filter: filter
-	}
+  return {
+    type: 'FILTER_LOGS',
+    filter: filter
+  }
 }
 
 exports.toggle = function () {
@@ -12,8 +12,8 @@ exports.toggle = function () {
 }
 
 exports.append = function (entry) {
-	return {
-		type: 'APPEND_LOGS',
-		entry: entry
-	}
+  return {
+    type: 'APPEND_LOGS',
+    entry: entry
+  }
 }

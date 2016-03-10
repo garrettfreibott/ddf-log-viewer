@@ -1,4 +1,6 @@
+var m = require('merge')
 var random = require('random-item')
+
 var levels = require('./levels')
 
 var bundles = [
@@ -15,19 +17,17 @@ var apps = [
 ]
 
 var messages = [
-  'Application Context service already unpublished',
-  'New service registered [{ddf.catalog.transform.MetacardTransformer}={mime-type=text/xml, schema=http://www.opengis.net/cat/csw/2.0.2, id=csw:Record, service.id=652, service.bundleid=388, service.scope=bundle}]',
-  'Registered new ddf.action.ActionProvider [{ddf.action.ActionProvider}={id=catalog.data.metacard.csw:Record, service.id=653, service.bundleid=340, service.scope=singleton}]',
-  'Refreshing OsgiBundleXmlApplicationContext(bundle=search-endpoint, config=osgibundle:/META-INF/spring/*.xml): startup date [Wed Mar 09 07:05:59 MST 2016]; root of context hierarchy',
-  'Application Context service already unpublished'
+  'First log message',
+  'Second log message',
+  'Third log message'
 ]
 
-module.exports = function () {
-  return {
+module.exports = function (o) {
+  return m({
     time: (new Date()).toISOString(),
     level: random(levels().slice(1)),
     bundle: random(bundles),
     app: random(apps),
     message: random(messages)
-  }
+  }, o)
 }

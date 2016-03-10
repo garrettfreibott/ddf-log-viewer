@@ -1,11 +1,11 @@
 var c = require('color')
 
 var levels = {
-	ERROR: 'red',
-	INFO: 'white',
-	WARN: 'yellow',
-	TRACE: 'blue',
-	DEBUG: '#0f0'
+  ERROR: 'red',
+  INFO: 'white',
+  WARN: 'yellow',
+  TRACE: 'blue',
+  DEBUG: '#0f0'
 }
 
 module.exports = function (level) {
@@ -13,5 +13,5 @@ module.exports = function (level) {
     return c(levels[level]).lighten(0.9).hslString()
   }
 
-	return ['ALL'].concat(Object.keys(levels))
+  return ['ALL'].concat(Object.keys(levels))
 }

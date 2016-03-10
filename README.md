@@ -6,4 +6,10 @@ Quick DDF log viewer prototype using React/Redux.
 
 To try out the demo, do:
 
-	npm install && npm start
+    npm install && npm start
+
+## Tests
+
+To run tests, do:
+
+    npm test

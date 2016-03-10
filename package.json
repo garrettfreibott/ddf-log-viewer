@@ -4,7 +4,8 @@
   "description": "views logs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified.\" && exit 1",
+    "pretest": "standard",
+    "test": "browserify -d test/*.js | tape-run | tap-nyan",
     "start": "hotloadify index.js --open"
   },
   "keywords": [
@@ -25,7 +26,13 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
-    "hotloadify": "0.0.4"
+    "hotloadify": "0.0.4",
+    "react-addons-test-utils": "^0.14.7",
+    "react-stateless-wrapper": "^1.0.2",
+    "standard": "^6.0.8",
+    "tap-nyan": "0.0.2",
+    "tape": "^4.5.1",
+    "tape-run": "^2.1.3"
   },
   "browserify": {
     "transform": [
