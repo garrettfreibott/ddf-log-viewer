@@ -35,12 +35,11 @@ var styles = function (props) {
       left: 0,
       right: 0,
       bottom: 0,
-			fontFamily: 'sans-serif',
+      fontFamily: 'sans-serif',
       fontSize: 14
     }
   }
 }
-
 
 var LogPanel = function (props) {
   var state = props.state
@@ -63,14 +62,18 @@ var LogPanel = function (props) {
   }
 
   var icon = function () {
-    return (
-      <span style={s.icon}>{(state.open) ? '-' : '+'}</span>
-    )
+    if (state.open) {
+      return <span style={s.icon}>-</span>
+    }
+    return <span style={s.icon}>+</span>
   }
 
   return (
     <div style={s.panel}>
-      <button style={s.btn} onClick={toggle}>Logs {icon()}</button>
+      <button style={s.btn} onClick={toggle}>
+        Logs
+        {icon()}
+      </button>
       {viewer()}
     </div>
   )

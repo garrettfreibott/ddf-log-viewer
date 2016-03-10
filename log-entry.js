@@ -4,7 +4,7 @@ var moment = require('moment')
 var levels = require('./levels')
 
 var format = function (time) {
-	return moment(time).format('MMMM Do YYYY, h:mm:ss a')
+  return moment(time).format('MMMM Do YYYY, h:mm:ss a')
 }
 
 var styles = function (level) {
@@ -21,11 +21,21 @@ var LogEntry = function (props) {
 
   return (
     <tr>
-      <td style={s} width={250}>{format(entry.time)}</td>
-      <td style={s} width={100}>{entry.level}</td>
-      <td style={s}>{entry.message}</td>
-      <td style={s} width={200}>{entry.app}</td>
-      <td style={s} width={200}>{entry.bundle}</td>
+      <td style={s} width={250}>
+        {format(entry.time)}
+      </td>
+      <td style={s} width={100}>
+        {entry.level}
+      </td>
+      <td style={s}>
+        {entry.message}
+      </td>
+      <td style={s} width={200}>
+        {entry.app}
+      </td>
+      <td style={s} width={200}>
+        {entry.bundle}
+      </td>
     </tr>
   )
 }

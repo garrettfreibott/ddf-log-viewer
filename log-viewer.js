@@ -6,29 +6,28 @@ var LogEntry = require('./log-entry')
 var actions = require('./actions')
 
 var styles = function () {
+  var border = '#ccc'
+  var fg = '#777'
+  var bg = '#fff'
 
-	var border = '#ccc'
-	var fg = '#777'
-	var bg = '#fff'
-
-	return {
+  return {
     container: {
       display: 'table',
       height: '100%',
       width: '100%',
       background: '#ccc'
     },
-		table: {
-			color: fg,
-			background: bg,
-			borderCollapse: 'collapse',
-			width: '100%'
-		},
-		header: {
-			color: bg,
-			background: fg,
-			padding: 8
-		},
+    table: {
+      color: fg,
+      background: bg,
+      borderCollapse: 'collapse',
+      width: '100%'
+    },
+    header: {
+      color: bg,
+      background: fg,
+      padding: 8
+    },
     scroll: {
       display: 'block',
       overflowY: 'auto',
@@ -48,7 +47,7 @@ var styles = function () {
       padding: 4,
       borderBottom: '1px ' + border + ' solid'
     }
-	}
+  }
 }
 
 var select = function (dispatch) {
@@ -64,13 +63,12 @@ var entries = function (props) {
   })
 
   return props.logs.filter(function (entry) {
-		return level === 'ALL' || entry.level === level
+    return level === 'ALL' || entry.level === level
   }).filter(function (entry) {
     return fields.reduce(function (match, field) {
       return entry[field].toLowerCase().match(new RegExp(props.filter[field], 'i')) && match
     }, true)
-    return entry
-	}).map(function (entry) {
+  }).map(function (entry) {
     return <LogEntry entry={entry} />
   })
 }
@@ -92,30 +90,48 @@ var LogViewer = function (props) {
     <div style={s.container}>
       <div style={s.bar}>
         <table style={s.table}>
-          <tr>
-            <td style={s.header} width={250}>Time</td>
-            <td style={s.header} width={100}>Level</td>
-            <td style={s.header}>Message</td>
-            <td style={s.header} width={200}>App</td>
-            <td style={s.header} width={200}>Bundle</td>
-          </tr>
-          <tr>
-            <td style={s.controls}></td>
-            <td style={s.controls}>
-              <LevelSelector
-                selected={props.filter.level}
-                onSelect={select(props.dispatch)}/>
-            </td>
-            <td style={s.controls}>{filter('message', props)}</td>
-            <td style={s.controls}>{filter('app', props)}</td>
-            <td style={s.controls}>{filter('bundle', props)}</td>
-          </tr>
+          <thead>
+            <tr>
+              <td style={s.header} width={250}>
+                Time
+              </td>
+              <td style={s.header} width={100}>
+                Level
+              </td>
+              <td style={s.header}>
+                Message
+              </td>
+              <td style={s.header} width={200}>
+                App
+              </td>
+              <td style={s.header} width={200}>
+                Bundle
+              </td>
+            </tr>
+            <tr>
+              <td style={s.controls}></td>
+              <td style={s.controls}>
+                <LevelSelector selected={props.filter.level} onSelect={select(props.dispatch)} />
+              </td>
+              <td style={s.controls}>
+                {filter('message', props)}
+              </td>
+              <td style={s.controls}>
+                {filter('app', props)}
+              </td>
+              <td style={s.controls}>
+                {filter('bundle', props)}
+              </td>
+            </tr>
+          </thead>
         </table>
       </div>
       <div style={{ display: 'table-row', position: 'relative' }}>
         <div style={s.scroll}>
           <table style={s.table}>
-            {entries(props)}
+            <tbody>
+              {entries(props)}
+            </tbody>
           </table>
         </div>
       </div>

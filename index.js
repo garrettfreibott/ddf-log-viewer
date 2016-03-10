@@ -9,9 +9,9 @@ var LogPanel = require('./log-panel')
 var random = require('./random-entry')
 
 var render = function (data) {
-	var state = window.store.getState()
+  var state = window.store.getState()
 
-	dom.render(
+  dom.render(
     <LogPanel state={state} dispatch={window.store.dispatch} />,
     document.getElementById('root'))
 }
@@ -24,16 +24,12 @@ if (!window.isInit) {
   var store = window.store = redux.createStore(reducer)
   store.subscribe(render)
 
-  /*for (var i = 0; i < 50; i++) {
-		store.dispatch(actions.append(random()))
-  }*/
-
-  setInterval(function () {
-		window.store.dispatch(actions.append(random()))
-  }, 1000)
+  for (var i = 0; i < 50; i++) {
+    store.dispatch(actions.append(random()))
+  }
 
   store.subscribe(log)
-	window.isInit = true
+  window.isInit = true
 }
 
 render()

@@ -4,6 +4,7 @@
   "description": "views logs",
   "main": "index.js",
   "scripts": {
+    "pretest": "standard",
     "test": "echo \"Error: no test specified.\" && exit 1",
     "start": "hotloadify index.js --open"
   },
@@ -25,7 +26,8 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
-    "hotloadify": "0.0.4"
+    "hotloadify": "0.0.4",
+    "standard": "^6.0.8"
   },
   "browserify": {
     "transform": [
