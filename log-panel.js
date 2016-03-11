@@ -29,7 +29,7 @@ var styles = function (props) {
     },
     panel: {
       position: 'fixed',
-      height: (props.state.open) ? '50%' : 0,
+      height: (props.state.open) ? '90%' : 0,
       left: 0,
       right: 0,
       bottom: 0,
@@ -54,7 +54,7 @@ var LogPanel = function (props) {
         <LogViewer
           filter={state.filter}
           logs={state.logs}
-          dispatch={window.store.dispatch} />
+          dispatch={dispatch} />
       )
     }
   }
