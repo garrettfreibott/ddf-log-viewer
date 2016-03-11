@@ -6,6 +6,7 @@
   "scripts": {
     "pretest": "standard",
     "test": "browserify -d test/*.js | tape-run | tap-nyan",
+    "watch": "onchange '*.js' 'test/**/*.js' -- npm t",
     "start": "hotloadify index.js --open"
   },
   "keywords": [
@@ -27,6 +28,7 @@
   "devDependencies": {
     "browserify": "^13.0.0",
     "hotloadify": "0.0.4",
+    "onchange": "^2.1.2",
     "react-addons-test-utils": "^0.14.7",
     "react-stateless-wrapper": "^1.0.2",
     "standard": "^6.0.8",
