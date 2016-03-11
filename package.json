@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "color": "^0.11.1",
+    "keymaster": "^1.6.2",
     "merge": "^1.2.0",
     "moment": "^2.11.2",
     "random-item": "^1.0.0",
